@@ -1,20 +1,30 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import cors from 'cors'
-import connectDB from './config/db.js'
-import openaiRoutes from './routes/openai.js'
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
 
-dotenv.config()
-const app = express()
+const app = express();
+const PORT = 8000;
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
-app.use('/api/openai', openaiRoutes)
+// Serve static frontend
+app.use(express.static(path.join(__dirname, 'public')));
 
-const PORT = process.env.PORT || 5000
+// ✅ API route
+app.post('/api/data', (req, res) => {
+  const data = req.body;
+  console.log('Received from client:', data);
+  res.json({ success: true, message: 'Data received', data });
+});
+
+// ✅ Fallback: serve React index.html for unknown frontend routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`)
-  connectDB()
-})
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
+});
+
+
