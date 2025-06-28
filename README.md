@@ -100,7 +100,7 @@ Runs at: `http://localhost:5173`
 - 🔗 **Live App**: 🔗 Live App: https://ai-learnmate-weld.vercel.app
 
 - 📄 **Project Documentation**: https://docs.google.com/presentation/d/1zMeNi-P3ELCGeHO5QPQJyFm_7Ie7LDjD1gnEtDFMu00/edit?usp=sharing
-- 📂 **GitHub Repo**: (https://github.com/YOUR_USERNAME/ai-learnmate)
+- 📂 **GitHub Repo**: https://github.com/Aparajith2004/ai-learnmate.git
 
 ---
 
