@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test API</title>
+</head>
+<body>
+  <h1>Send Data to Backend</h1>
+  <form id="dataForm">
+    <input type="text" id="name" placeholder="Enter your name" required />
+    <input type="text" id="mood" placeholder="Enter your mood" required />
+    <button type="submit">Send</button>
+  </form>
+
+  <pre id="output"></pre>
+
+  <script>
+    document.getElementById('dataForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const mood = document.getElementById('mood').value;
+
+      const response = await fetch('http://localhost:8000/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, mood })
+      });
+
+      const result = await response.json();
+      document.getElementById('output').textContent = JSON.stringify(result, null, 2);
+    });
+  </script>
+</body>
+</html>
